@@ -65,6 +65,12 @@ class RecipeScraper:
                 if "@type" in data.keys() and data["@type"] == "Recipe":
                     self.trivial_content = data
                     break
+                # The @type:Recipe is maybe deeper
+                elif "@graph" in data.keys():
+                    for section in data["@graph"]:
+                        if "@type" in section.keys() and section["@type"] == "Recipe":
+                            self.trivial_content = section
+                            break
         if self.trivial_content == None:
             return self._parse_recipe()
         else:
@@ -81,9 +87,3 @@ class RecipeScraper:
     def _parse_recipe(self):
         return RecipeComplex(self.html).parse()
 
-       
-
-recette = RecipeScraper("https://www.ricardocuisine.com/recettes/5335-sauce-a-spaghetti-la-meilleure")
-infos = recette.scrape()
-print(infos.ingredients)
-print(infos.instructions)
