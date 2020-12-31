@@ -63,7 +63,7 @@ class RecipeScraper:
                 if "@type" in data.keys() and data["@type"] == "Recipe":
                     self.trivial_content = data
                     break
-        if not self.trivial_content == None:
+        if self.trivial_content == None:
             return self._parse_recipe()
         else:
             return self._parse_trivial_case()
@@ -80,4 +80,3 @@ class RecipeScraper:
         return RecipeComplex(self.html).parse()
 
         
-RecipeScraper("https://www.ricardocuisine.com/recettes/8286-filets-de-turbot-meuniere").scrape()
