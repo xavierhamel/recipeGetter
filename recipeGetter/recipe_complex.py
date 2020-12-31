@@ -35,6 +35,7 @@ class RecipeComplex(Recipe):
         self.description = self._find_description()
         self.ingredients = self._find_ingredients()
         self.instructions = self._find_instructions()
+        return self
 
     # The function will try to find the name of the recipe. It will first try
     # to find the og:title meta tag. If the tag was not found it will take the
@@ -73,7 +74,6 @@ class RecipeComplex(Recipe):
     # (h..) is found, return it. If a header was previously found, (for
     # ingredients) use the same type of header to search for instructions.
     def _find_section_title(self, keywords):
-        print(self.section_tag_type)
         for tag_type in self._section_tag_type:
             for header in self._html.find_all(tag_type):
                 for keyword in keywords:

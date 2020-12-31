@@ -18,9 +18,8 @@ class RecipeTrivial(Recipe):
         self.image = self._parse_images(data.get("image"))
         self.instructions = self._parse_instructions(data.get("recipeInstructions"))
         self.ingredients = data.get("recipeIngredient", [])
+        return self
 
-        print(self.instructions)
-    
     # This function will get the author name depending if it is a person or an
     # organization.
     @staticmethod

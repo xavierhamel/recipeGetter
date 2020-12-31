@@ -15,8 +15,9 @@
 import requests
 import json
 from bs4 import BeautifulSoup
-from recipe_trivial import RecipeTrivial
-from recipe_complex import RecipeComplex
+from recipeGetter.recipe_trivial import RecipeTrivial
+from recipeGetter.recipe_complex import RecipeComplex
+from recipeGetter.recipe import Recipe
 
 class RecipeScraper:
     def __init__(self, url):
@@ -29,14 +30,15 @@ class RecipeScraper:
 
     def scrape(self):
         self._scrape_content()
-        if not self.error == None:
+        if self.error == None:
             self.html = BeautifulSoup(self.content, 'html.parser')
             # If the case is not trivial, this function will automatically try
             # to find information based on the arbitrary HTML and return a
             # "RecipeComplex" instead of a "RecipeTrivial" instance
             self.recipe = self._find_trivial_case()
             return self.recipe
-        return self.error
+        return Recipe()
+        #return self.error
 
     # This function will scrape the website specified by the url given when the
     # class was instanciated and put the content of the response in
@@ -79,4 +81,9 @@ class RecipeScraper:
     def _parse_recipe(self):
         return RecipeComplex(self.html).parse()
 
-        
+       
+
+recette = RecipeScraper("https://www.ricardocuisine.com/recettes/5335-sauce-a-spaghetti-la-meilleure")
+infos = recette.scrape()
+print(infos.ingredients)
+print(infos.instructions)
