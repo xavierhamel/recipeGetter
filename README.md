@@ -5,7 +5,7 @@ This library will try to scrape recipe websites and get the information of the r
 ## Usage
 ### Install the library
 ```
-pip install recipe-collector
+pip install recipe-getter
 ```
 
 ### Scrape the recipe
@@ -25,7 +25,18 @@ infos.cook_time # Cooking time of the recipe
 infos.image # A link to an image of the recipe
 ```
 
-Some informations may not be present if the scraper was not succesful to find it or was not present on the website.
+Some informations may not be present if the scraper was not succesful to find it or if the information was not present on the website.
+
+## How it works
+### Trivial case
+A majority of popular recipe websites put data about the recipe in a `<script type="application/ld+json">` tag. They put it there because Google will improve the searching result if a website use this technique. The data is very easily pared and returned as a `RecipeTrivial()` instance.
+
+### Complex case
+When a website is not putting it's data in a `script` tag, the library will search the arbitrary html for the informations. Not all the data is accessible with this technique and only the ingredients, instructions, name of the recipe, description and author will be searched.
+
+## License
+[License](https://github.com/xavierhamel/recipe-getter/blob/main/LICENSE)
+
 
 
 
