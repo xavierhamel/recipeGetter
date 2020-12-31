@@ -1,4 +1,4 @@
-# Recipe Collector
+# Recipe Getter
 This library will try to scrape recipe websites and get the information of the recipe. This work on a majority of websites. Give an url to the scraper and get back an instance of the `Recipe()` class with all the information about the recipe (if it was found).
 
 
