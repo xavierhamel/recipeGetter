@@ -5,7 +5,7 @@ This library will try to scrape recipe websites and get the information of the r
 ## Usage
 ### Install the library
 ```
-pip install recipe-getter
+pip install recipeGetter
 ```
 
 ### Scrape the recipe
@@ -35,7 +35,7 @@ A majority of popular recipe websites put data about the recipe in a `<script ty
 When a website is not putting it's data in a `script` tag, the library will search the arbitrary html for the informations. Not all the data is accessible with this technique and only the ingredients, instructions, name of the recipe, description and author will be searched.
 
 ## License
-[License](https://github.com/xavierhamel/recipe-getter/blob/main/LICENSE)
+[License](https://github.com/xavierhamel/recipeGetter/blob/main/LICENSE)
 
 
 
